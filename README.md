@@ -1,6 +1,6 @@
-# erd.babbage.template
+# erd.blockchain-academy.ico-dapp
 
-This project provides a basic template to build upon for the Blockathon. It is written in Vue (https://vuejs.org/), uses web3 (https://www.npmjs.com/package/web3) and MetaMask (https://metamask.io/) as a means to communicate with a blockchain node and integrates fudge (https://www.npmjs.com/package/fudge-cli) as a simple contract compiler and deployer.
+This project provides will be used to demonstrate the creation of a crowdsale application. It is written in Vue (https://vuejs.org/), uses web3 (https://www.npmjs.com/package/web3) and MetaMask (https://metamask.io/) as a means to communicate with a blockchain node and integrates fudge (https://www.npmjs.com/package/fudge-cli) as a simple contract compiler and deployer.
 
 ## Project setup
 ```
