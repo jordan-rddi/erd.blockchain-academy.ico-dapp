@@ -2,11 +2,13 @@
 node_modules
 /dist
 
-
 # local env files
 .env
 .env.local
 .env.*.local
+
+# Do not do this usually. This is for the tutorial only.
+!src/fudge/.env
 
 # Log files
 npm-debug.log*
