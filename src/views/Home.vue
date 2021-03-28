@@ -36,10 +36,10 @@ export default {
         token: "",
       },
       tokenContract: null,
-      tokensAvailable: "<loading>",
+      tokensAvailable: 0,
       tokenInformation: {
-        name: "<loading>",
-        symbol: "<loading>",
+        name: "",
+        symbol: "",
       },
       tokensToPurchase: 0
     }
@@ -52,36 +52,14 @@ export default {
   },
   methods: {
     updateCrowdsaleInformation() {
-      EDFCrowdsale.getCrowdsaleInformation()
-      .then((_crowdsaleInformation) => {
-        console.log(_crowdsaleInformation);
-
-        this.crowdsaleInformation = _crowdsaleInformation;
-
-        this.tokenContract = new IERC20(this.crowdsaleInformation.token);
-
-        return this.tokenContract.getTokenInformation();
-      })
-      .then((_tokenInformation) => {
-        console.log(_tokenInformation);
-
-        this.tokenInformation = _tokenInformation;
-
-        return this.tokenContract.getBalanceOf(EDFCrowdsale.address);
-      })
-      .then((_crowdsaleBalance) => {
-        console.log(_crowdsaleBalance);
-
-        this.tokensAvailable = _crowdsaleBalance;
-      })
-      .catch(error => {
-        console.log(error);
-      });
+      /**
+       * This function should retrieve and set the crowdsale & token information
+       */
     },
     getPercentageSold() {
       const totalAvailableTokens = Number(this.tokensAvailable) + Number(this.crowdsaleInformation.tokensSold);
 
-      return (Number(this.crowdsaleInformation.tokensSold) / totalAvailableTokens) * 100;
+      return (Number(this.crowdsaleInformation.tokensSold) / totalAvailableTokens) * 100 || 0;
     },
     getWeiTokenCost(tokens) {
       const tokensBN = web3.utils.toBN(tokens);
@@ -93,19 +71,13 @@ export default {
       return this.convertWeiToEther(this.getWeiTokenCost(tokens));
     },
     convertWeiToEther(wei) {
-      return web3.utils.fromWei(wei);
+      const weiBN = web3.utils.toBN(wei);
+      return web3.utils.fromWei(weiBN);
     },
     buyTokens(event) {
-      EDFCrowdsale.buyTokens(this.getWeiTokenCost(this.tokensToPurchase))
-        .then((receipt) => {
-          console.log(receipt);
-
-          this.tokensToPurchase = 0;
-          this.updateCrowdsaleInformation();
-        })
-        .catch(error => {
-          console.log(error);
-        })
+      /**
+       * This function should purchase the amount of tokens set in the form.
+       */
     },
   }
 }

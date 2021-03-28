@@ -34,41 +34,19 @@ class edfCrowdsale {
   }
 
   getTokensSold() {
-    return this.contract.methods.tokensSold().call();
+    return Promise.resolve(0);
   }
 
   getTokenPrice() {
-    return this.contract.methods.tokenPrice().call();
+    return Promise.resolve(0);
   }
 
   getToken() {
-    return this.contract.methods.token().call();
+    return Promise.resolve("0x0");
   }
 
   buyTokens(value) {
-    let accounts = [];
-
-    return new Promise((resolve, reject) => {
-      MetaMask.getAccounts()
-        .then(_accounts => {
-          accounts = _accounts;
-
-          return this.contract.methods.buyTokens().estimateGas({ from: accounts[0], value: value })
-        })
-        .then(gasEstimate => {
-          console.log(`Gas estimation: ${gasEstimate}`);
-          
-          return this.contract.methods.buyTokens().send({ from: accounts[0], gas: gasEstimate, value: value });
-        })
-        .then(receipt => {
-          console.log(receipt);
-
-          resolve(receipt);
-        })
-        .catch(error => {
-          reject(error);
-        })  
-    });
+    return Promise.reject("This method is not yet implemented");
   }
 }
 
