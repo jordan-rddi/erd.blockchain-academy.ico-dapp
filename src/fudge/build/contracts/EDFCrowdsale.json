@@ -3913,8 +3913,8 @@
   "userdoc": { "kind": "user", "methods": {}, "version": 1 },
   "contractName": "EDFCrowdsale",
   "deployment": {
-    "address": "0x22e03cBba0E207E4D0308071B9db3A7bFFb3EDa7",
-    "transactionHash": "0xa46b4472465979635cd8790b91899730b64655dc3248b6a2500122a4198684b8",
-    "blockNumber": 97
+    "address": "0x80e8306A4a0Acba44Bb94f86c2F17BAA4A577d2D",
+    "transactionHash": "0xd91703dd6479dfeb49c40285d4d462f4359fd1e09df76767af4369eae9c88653",
+    "blockNumber": 265
   }
 }
