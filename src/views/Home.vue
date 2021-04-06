@@ -17,6 +17,22 @@
       <button type="submit">Buy</button>
       <p>This purchase will cost {{ getWeiTokenCost(tokensToPurchase) }} wei ({{ getEtherTokenCost(tokensToPurchase) }} Ether)</p>
     </form>
+
+    <h2>Sales</h2>
+    <table>
+      <tr>
+        <th>
+          Buyer
+        </th>
+        <th>
+          Quantity
+        </th>
+      </tr>
+      <tr v-for="(sale, index) in tokenSales" v-bind:key="index">
+        <td>{{ sale.to }}</td>
+        <td>{{ sale.value }}</td>
+      </tr>
+    </table>
   </div>
 </template>
 
@@ -41,7 +57,8 @@ export default {
         name: "",
         symbol: "",
       },
-      tokensToPurchase: 0
+      tokensToPurchase: 0,
+      tokenSales: []
     }
   },
   created() {
@@ -73,6 +90,17 @@ export default {
         console.log(_crowdsaleBalance);
 
         this.tokensAvailable = _crowdsaleBalance;
+
+        return this.tokenContract.getPastTransferEvents({ fromBlock: 0, filter: { from: EDFCrowdsale.address }});
+      })
+      .then((events) => {
+        this.tokenSales = events.map(event => {
+          return {
+            from: event.returnValues.from,
+            to: event.returnValues.to,
+            value: event.returnValues.value,
+          };
+        })
       })
       .catch(error => {
         console.log(error);

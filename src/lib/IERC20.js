@@ -42,6 +42,10 @@ class IERC20 {
   getBalanceOf(address) {
     return this.contract.methods.balanceOf(address).call();
   }
+
+  getPastTransferEvents(options = {}) {
+    return this.contract.getPastEvents('Transfer', options);
+  }
 }
 
 module.exports = IERC20;
